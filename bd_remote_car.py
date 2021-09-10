@@ -9,7 +9,7 @@ import sys
 
 
 # remote format : acc. + brake at left, and left/right at right
-bd = Bluedot(cols=4, rows=3) # MockBlueDot for tests without bluetooth client
+bd = BlueDot(cols=4, rows=3) # MockBlueDot for tests without bluetooth client
 
 
 acc = bd[0, 0]
