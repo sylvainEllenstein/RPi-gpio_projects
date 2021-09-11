@@ -39,6 +39,63 @@ acc.color = brake.color = (150, 150, 150)
 left.color = right.color = (200, 0, 0)
 
 
-pause()
 
-# next test : effect of pressing / releasing buttons
+# ************** Adding main.py **************** #
+
+# -*- coding: utf-8 -*-
+"""
+Script for managing servos and motors for bd remoted car
+"""
+# This is probably the main script 
+
+import gpiozero
+from time import sleep
+from gpiozero.pins.pigpio import PiGPIOFactory
+
+# sys.path.append("./gpio-scripts")
+# from bd_remote_car import *
+
+
+factory = PiGPIOFactory()
+LeftMotorPin = 11
+RightMotorPin = 12
+rotateServoPin = None ################
+
+# rotateServo = gpiozero.AngularServo(rotateServoPin)
+leftMotor = gpiozero.Servo(LeftMotorPin, pin_factory = factory)
+rightMotor = gpiozero.Servo(RightMotorPin)
+
+"""
+> frame_width
+    The time between control pulses, measured in seconds.
+> is_active
+    Composite devices are considered “active” if any of their constituent devices have a “truthy” value.
+> max_pulse_width
+    The control pulse width corresponding to the servo’s maximum position, measured in seconds.
+> min_pulse_width
+    The control pulse width corresponding to the servo’s minimum position, measured in seconds.
+> pulse_width
+    Returns the current pulse width controlling the servo.
+"""
+
+
+def goForward():
+    leftMotor.max()
+    rightMotor.min()
+
+def goBackward():
+    leftMotor.min()
+    rightMotor.max()
+
+def stop(): 
+    leftMotor.detach()
+    rightMotor.detach()
+
+acc.when_pressed = goForward
+brake.when_pressed = goBackward
+acc.when_released = brake.when_released = stop
+
+
+
+
+
