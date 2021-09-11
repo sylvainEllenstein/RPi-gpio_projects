@@ -9,15 +9,29 @@ import sys
 
 
 # remote format : acc. + brake at left, and left/right at right
-bd = BlueDot(cols=4, rows=3) # MockBlueDot for tests without bluetooth client
+bd = BlueDot(cols=6, rows=3) # MockBlueDot for tests without bluetooth client
 
 
 acc = bd[0, 0]
 brake = bd[0, 2]
-left = bd[2, 1]
-right = bd[3,1]
+left = bd[3, 1]
+right = bd[5,1]
 
-bd[0, 1].visible, bd[1, 0].visible, bd[1, 1].visible, bd[1, 2].visible, bd[2, 0].visible, bd[2, 2].visible, bd[3, 0].visible, bd[3, 2] = [False] * 8
+bd[0, 1].visible = False
+bd[1, 0].visible = False
+bd[1, 1].visible = False
+bd[1, 2].visible = False
+bd[2, 0].visible = False
+bd[2, 1].visible = False
+bd[2, 2].visible = False
+bd[3, 0].visible = False
+bd[3, 2].visible = False
+bd[4, 0].visible = False
+bd[4, 1].visible = False
+bd[4, 2].visible = False
+bd[5, 0].visible = False
+bd[5, 2].visible = False
+
 
 acc.square = brake.square = True
 left.border = right.border = True
