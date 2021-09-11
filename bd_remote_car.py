@@ -24,4 +24,7 @@ left.border = right.border = True
 acc.color = brake.color = (150, 150, 150)
 left.color = right.color = (200, 0, 0)
 
+
+pause()
+
 # next test : effect of pressing / releasing buttons
