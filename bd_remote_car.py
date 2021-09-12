@@ -57,8 +57,8 @@ from gpiozero.pins.pigpio import PiGPIOFactory
 
 
 # factory = PiGPIOFactory()
-LeftMotorPin = 7
-RightMotorPin = 11
+LeftMotorPin = "BOARD7"
+RightMotorPin = "BOARD11"
 rotateServoPin = None ################
 
 # rotateServo = gpiozero.AngularServo(rotateServoPin)
