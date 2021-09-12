@@ -42,9 +42,11 @@ def disconnection():
     print("Client disconnected, do you want to stop running the program ? (yes/no)")
     if input().lower() in ["yes", "\n", " "]:
         exit()
+    else : 
+        bd.wait_for_connection()
 
 bd.wait_for_connection()
-bd.when_client_disconnects = disconnection 
+bd.set_when_client_disconnects = disconnection 
 
 # ************** Adding main.py **************** #
 
@@ -86,12 +88,12 @@ rightMotor = gpiozero.Servo(RightMotorPin)
 
 
 def goForward():
-    leftMotor.max()
-    rightMotor.min()
-
-def goBackward():
     leftMotor.min()
     rightMotor.max()
+
+def goBackward():
+    leftMotor.max()
+    rightMotor.min()
 
 def stop(): 
     leftMotor.detach()
