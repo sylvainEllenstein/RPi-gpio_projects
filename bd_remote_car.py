@@ -38,7 +38,7 @@ left.border = right.border = True
 acc.color = brake.color = (150, 150, 150)
 left.color = right.color = (200, 0, 0)
 
-def disconnection():
+def disconnection2():
     print("Client disconnected, do you want to stop running the program ? (yes/no)")
     if input().lower() in ["yes", "\n", " "]:
         exit()
@@ -46,7 +46,7 @@ def disconnection():
         bd.wait_for_connection()
 
 bd.wait_for_connection()
-bd.set_when_client_disconnects = disconnection 
+bd.set_when_client_disconnects = disconnection2 
 
 # ************** Adding main.py **************** #
 
