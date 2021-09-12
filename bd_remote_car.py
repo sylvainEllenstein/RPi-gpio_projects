@@ -38,7 +38,7 @@ left.border = right.border = True
 acc.color = brake.color = (150, 150, 150)
 left.color = right.color = (200, 0, 0)
 
-
+bd.wait_for_connection()
 
 # ************** Adding main.py **************** #
 
@@ -56,13 +56,13 @@ from gpiozero.pins.pigpio import PiGPIOFactory
 # from bd_remote_car import *
 
 
-factory = PiGPIOFactory()
+# factory = PiGPIOFactory()
 LeftMotorPin = 11
 RightMotorPin = 12
 rotateServoPin = None ################
 
 # rotateServo = gpiozero.AngularServo(rotateServoPin)
-leftMotor = gpiozero.Servo(LeftMotorPin, pin_factory = factory)
+leftMotor = gpiozero.Servo(LeftMotorPin)
 rightMotor = gpiozero.Servo(RightMotorPin)
 
 """
@@ -98,4 +98,4 @@ acc.when_released = brake.when_released = stop
 
 
 
-
+pause()
