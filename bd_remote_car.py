@@ -67,9 +67,9 @@ from gpiozero.pins.pigpio import PiGPIOFactory
 # factory = PiGPIOFactory()
 LeftMotorPin = "BOARD7"
 RightMotorPin = "BOARD11"
-rotateServoPin = None ################
+rotateServoPin = "BOARD23""
 
-# rotateServo = gpiozero.AngularServo(rotateServoPin)
+rotatServo = gpiozero.AngularServo(rotateServoPinn min_angle = -50, max_ange = 50)
 leftMotor = gpiozero.Servo(LeftMotorPin)
 rightMotor = gpiozero.Servo(RightMotorPin)
 
@@ -86,23 +86,57 @@ rightMotor = gpiozero.Servo(RightMotorPin)
     Returns the current pulse width controlling the servo.
 """
 
+# TODO : définir la fonction pour tourner avant, puis dans les goForward et backward, regarder la pression des boutons pour tourner et modifier la vitesse
+
+running = False
+turning = False
+
+def goRight():
+    global turning
+    turning = "right"
+    rotateServo.angle = -50
+    
+def goLeft():
+    global turning
+    turning = "left"
+    rotateServo.angle = 50
+    
+def stopRotation():
+    global turning
+    turning = False
+    rotateServo.angle = 0
+    
+left.when_pressed = goLeft
+right.when_pressed = goRight
+left.when_released = right.when_released = stopRotation
 
 def goForward():
-    leftMotor.min()
-    rightMotor.max()
+    global running
+    running = True
+    if turning :
+        pass
+    else : 
+        leftMotor.value = val
+        rightMotor.max()
 
 def goBackward():
-    leftMotor.max()
-    rightMotor.min()
+    global running
+    running = True
+    if turning :
+        pass
+    else : 
+        leftMotor.max()
+        rightMotor.min()
 
 def stop(): 
+    global running
+    running = False
     leftMotor.detach()
     rightMotor.detach()
 
 acc.when_pressed = goForward
 brake.when_pressed = goBackward
 acc.when_released = brake.when_released = stop
-
 
 
 
