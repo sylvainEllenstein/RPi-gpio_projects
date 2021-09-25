@@ -67,7 +67,7 @@ from gpiozero.pins.pigpio import PiGPIOFactory
 # factory = PiGPIOFactory()
 LeftMotorPin = "BOARD7"
 RightMotorPin = "BOARD11"
-rotateServoPin = "BOARD23""
+rotateServoPin = "BOARD18""
 
 rotatServo = gpiozero.AngularServo(rotateServoPinn min_angle = -50, max_ange = 50)
 leftMotor = gpiozero.Servo(LeftMotorPin)
@@ -92,17 +92,17 @@ running = False
 turning = False
 
 def goRight():
-    global turning
+    # global turning
     turning = "right"
     rotateServo.angle = -50
     
 def goLeft():
-    global turning
+    # global turning
     turning = "left"
     rotateServo.angle = 50
     
 def stopRotation():
-    global turning
+    # global turning
     turning = False
     rotateServo.angle = 0
     
@@ -116,7 +116,7 @@ def goForward():
     if turning :
         pass
     else : 
-        leftMotor.value = val
+        leftMotor.min()
         rightMotor.max()
 
 def goBackward():
